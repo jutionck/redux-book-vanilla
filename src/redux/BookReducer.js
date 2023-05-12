@@ -33,21 +33,19 @@ export function bookReducer(state = initialState, action) {
   const { type, payload } = action;
   if (type === ADD_BOOK) {
     console.log(ADD_BOOK);
-    return {
-      ...state,
-      books: [...state.books, payload],
-    };
+    return { books: [...state.books, payload] };
   }
 
   if (type === LIST_BOOK) {
     console.log(LIST_BOOK);
-    return { books: [...state.books] };
+    return { books: state.books };
   }
 
   if (type === GET_BOOK) {
     console.log(GET_BOOK);
-    const book = state.books.find((book) => book.id === payload.id);
-    return book ? { books: [book] } : { books: [] };
+    return {
+      books: state.books.find((book) => book.id === payload.id),
+    };
   }
 
   if (type === UPDATE_BOOK) {
